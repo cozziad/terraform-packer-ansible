@@ -1,6 +1,6 @@
 provider "aws" {
     profile = "default"
-    region = "us-east-1"
+    region = "us-east-2"
 }
 
 terraform {
@@ -11,9 +11,21 @@ terraform {
 
 resource "aws_instance" "app-server" {
     count = 1
-    ami = "ami-2757f631"
+    ami = "ami-02f706d959cedf892"
     instance_type = "t2.micro"
+    key_name = "packer-test"
     tags = {
-        Name = "packer-asible-test"
+        Name = "packer-asible-test-app"
     }
 }
+/*
+resource "aws_instance" "worker-server" {
+    count = 1
+    ami = "ami-02f706d959cedf892"
+    instance_type = "t2.micro"
+    key_name = "packer-test"
+    tags = {
+        Name = "packer-asible-test-worker"
+    }
+}
+/**/
